@@ -1,0 +1,83 @@
+/* Line added via automated migrations. */
+@use "igniteui-angular/theming" as *;
+/* You can add global styles to this file, and also import other style files */
+// Standard CSS normalize, comment out if not required or using a different module
+@import "minireset.css/minireset";
+
+/* See: https://www.infragistics.com/products/ignite-ui-angular/angular/components/themes.html */
+
+@import "app/themes/palettes";
+@import "app/themes/vars";
+
+/* autoprefixer grid: on */
+
+@include core();
+@include typography();
+
+:root {
+  --ig-typography: 'Titillium Web', sans-serif; 
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  @include media("<=desktop") {
+    overflow-y: auto;
+    height: auto;
+  }
+}
+
+.app-light-theme {
+  background: linear-gradient(#ddd, #f1f1f1);
+  @include theme($palette: $app-palette);
+  @import "app/themes/components/light";
+
+  scrollbar-color: color($app-palette, 'gray', 100) color($app-palette, 'gray', 200);
+
+  ::-webkit-scrollbar {
+    width: 8px
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: color($app-palette, 'gray', 100);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: color($app-palette, 'gray', 200);
+  }
+
+  .footerLogo {
+    svg:nth-child(1) { display: none; }
+  }
+}
+
+.app-dark-theme {
+  @include theme($palette: $app-dark-palette, $schema: $dark-schema);
+  @import "app/themes/components/dark";
+  background: linear-gradient(map-get($dark-vars, dark-gradient));
+  color: #ddd;
+
+  scrollbar-color: color($app-dark-palette, 'gray', 100) #24304b;
+
+  ::-webkit-scrollbar {
+    width: 8px
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: color($app-dark-palette, 'gray', 100);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #24304b;
+  }
+
+  .footerLogo {
+    svg:nth-child(2) { display: none; }
+  }
+
+  .ig-tooltip-container-background {
+    color: color($app-dark-palette, 'gray') !important;
+  }
+}
+
+
